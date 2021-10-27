@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+    <div class="container pt-4">
+        {% block content %}
+            <div class="card-body">
+                <a href="#">Salom</a>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a href="{% url 'user:profile' %}">Profile  | {{ user.username }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'user:logout' %}">Chiqish</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a href="{% url 'user:logout' %}">Ro'yxatdan o'tish</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'user:logout' %}">Tizimga kirish</a>
+                    </li>
+                {% endif %}
+            </div>
+        {% endblock content %}
+    </div>
+</body>
+</html>
